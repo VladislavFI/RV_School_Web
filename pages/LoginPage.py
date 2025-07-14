@@ -17,6 +17,9 @@ class LoginPageLocators:
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
     OTHER_BUTTON = (By.XPATH, '//*[@data-l="t,other"]')
     ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
+    BUTTON_RESTORE = (By.XPATH, '//button[@data-l="t,restore"]')
+    BUTTON_BACK = (By.XPATH, '//button[@data-l="t,cancel"]')
+    BUTTON_SUPPORT = (By.XPATH, '(//*[@class="external-oauth-login_title-tx"])[2]')
 
 
 class LoginPageHelper(BasePage):
@@ -25,6 +28,8 @@ class LoginPageHelper(BasePage):
         # self.check_page()
 
     def check_page(self):
+        with allure.step('Проверяем страницу восстановления'):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.TAB_ENTRANCE)
         self.find_element(LoginPageLocators.TAB_QR_CODE)
         self.find_element(LoginPageLocators.LOGIN_FIELD)
@@ -47,3 +52,18 @@ class LoginPageHelper(BasePage):
     def get_error_text(self):
         self.attach_screenshot()
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    @allure.step('Вводим логин')
+    def type_login(self, login):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(login)
+        self.attach_screenshot()
+
+    @allure.step('Вводим пароль')
+    def type_password(self, password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
+
+    @allure.step('Нажимаем на кнопку восстановления')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.BUTTON_RESTORE).click()
