@@ -3,16 +3,42 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPageLocators:
-    TAB_ENTRANCE = (By.XPATH, '//a[contains(@class, "js-login-login")]')
-    TAB_QR_CODE = (By.XPATH, '//a[contains(@class, "js-login-qrCode")]')
-    LOGIN_FIELD = (By.ID, 'field_email')
-    PASSWORD_FIELD = (By.ID, 'field_password')
-    LOGIN_BUTTON = (By.XPATH, '//div[contains(@class, "LoginForm-module")]//button[@type="submit"]')
-    QR_CODE_BUTTON = (By.XPATH, '//button[.//span[text()="Войти по QR-коду"]]')
-    CAN_NOT_LOGIN_BUTTON = (By.XPATH, '//button[@aria-label = "Не получается войти?"]')
-    REGISTRATION_BUTTON = (By.XPATH, '//button[.//span[text()="Зарегистрироваться"]]')
-    VK_LOGIN = (By.XPATH, '//i[contains(@class, "__vk_id")]')
+    TAB_ENTRANCE = (By.XPATH, '//a[@data-l="t,login_tab"]')
+    TAB_QR_CODE = (By.XPATH, '//a[@data-l="t,qr_tab"]')
+    LOGIN_FIELD = (By.XPATH, '//input[@data-l="t,login"]')
+    PASSWORD_FIELD = (By.XPATH, '//input[@data-l="t,password"]')
+    LOGIN_BUTTON = (By.XPATH, '//input[@data-l="t,sign_in"]')
+    QR_CODE_BUTTON = (By.XPATH, '//a[@data-l="t,get_qr"]')
+    CAN_NOT_LOGIN_BUTTON = (By.XPATH, '//a[@data-l="t,restore"]')
+    REGISTRATION_BUTTON = (By.XPATH, '(//a[@data-l="t,register"])[2]')
+    VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
+    MAIL_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
+    YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
+    OTHER_BUTTON = (By.XPATH, '//*[@data-l="t,other"]')
+    ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
 
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        # self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.TAB_ENTRANCE)
+        self.find_element(LoginPageLocators.TAB_QR_CODE)
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.QR_CODE_BUTTON)
+        self.find_element(LoginPageLocators.CAN_NOT_LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
+        self.find_element(LoginPageLocators.VK_BUTTON)
+        self.find_element(LoginPageLocators.MAIL_BUTTON)
+        self.find_element(LoginPageLocators.YANDEX_BUTTON)
+        self.find_element(LoginPageLocators.OTHER_BUTTON)
+
+    def clik_login(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
