@@ -15,14 +15,14 @@ class LoginPageLocators:
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
     MAIL_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
-    OTHER_BUTTON = (By.XPATH, '//*[@data-l="t,other"]')
+    APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
     ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
 
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
         self.driver = driver
-        # self.check_page()
+        self.check_page()
 
     def check_page(self):
         self.find_element(LoginPageLocators.TAB_ENTRANCE)
