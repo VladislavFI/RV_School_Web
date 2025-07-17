@@ -15,7 +15,7 @@ class LoginPageLocators:
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
     MAIL_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
-    OTHER_BUTTON = (By.XPATH, '//*[@data-l="t,other"]')
+    APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
     ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
     BUTTON_RESTORE = (By.XPATH, '//button[@data-l="t,restore"]')
     BUTTON_BACK = (By.XPATH, '//button[@data-l="t,cancel"]')
@@ -41,7 +41,7 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.VK_BUTTON)
         self.find_element(LoginPageLocators.MAIL_BUTTON)
         self.find_element(LoginPageLocators.YANDEX_BUTTON)
-        self.find_element(LoginPageLocators.OTHER_BUTTON)
+        self.find_element(LoginPageLocators.APPLE_BUTTON)
 
     @allure.step('Нажимаем на кнопку Login')
     def clik_login(self):
@@ -67,3 +67,8 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.BUTTON_RESTORE).click()
+
+    @allure.step('Нажимаем на кнопку регистрации')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
