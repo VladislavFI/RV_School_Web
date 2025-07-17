@@ -36,7 +36,7 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.VK_BUTTON)
         self.find_element(LoginPageLocators.MAIL_BUTTON)
         self.find_element(LoginPageLocators.YANDEX_BUTTON)
-        self.find_element(LoginPageLocators.OTHER_BUTTON)
+        self.find_element(LoginPageLocators.APPLE_BUTTON)
 
     @allure.step('Нажимаем на кнопку Login')
     def clik_login(self):
