@@ -1,7 +1,7 @@
 from core.BaseTest import browser
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from pages.LoginPage import LoginPageHelper
-from pages.RegistrationPage import RegistrationPageHelper
+from pages.RegistrationPage import RegistrationPageHelperHelper
 
 import allure
 
@@ -12,12 +12,12 @@ BASE_URL = 'https://ok.ru/'
 @allure.title('Проверка выбора случайной страны')
 def test_registration_random_country(browser):
     with allure.step('Открываем главную страницу'):
-        BasePage(browser).get_url(BASE_URL)
+        BasePageHelper(browser).get_url(BASE_URL)
     with allure.step('Переходим на страницу регистрации'):
         LoginPage = LoginPageHelper(browser)
         LoginPage.click_registration()
     with allure.step('Выбираем случайную страну'):
-        RegistrationPage = RegistrationPageHelper(browser)
+        RegistrationPage = RegistrationPageHelperHelper(browser)
         Selected_country_code = RegistrationPage.select_random_country()
     with allure.step('Проверяем код выбранной страны'):
         Actual_country_code = RegistrationPage.get_phone_field_value()

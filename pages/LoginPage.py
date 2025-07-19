@@ -1,4 +1,4 @@
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
 import allure
 
@@ -22,7 +22,7 @@ class LoginPageLocators:
     BUTTON_SUPPORT = (By.XPATH, '(//*[@class="external-oauth-login_title-tx"])[2]')
 
 
-class LoginPageHelper(BasePage):
+class LoginPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
