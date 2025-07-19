@@ -25,7 +25,7 @@ class LoginPageLocators:
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
         self.driver = driver
-        # self.check_page()
+        self.check_page()
 
     def check_page(self):
         with allure.step('Проверяем страницу восстановления'):
