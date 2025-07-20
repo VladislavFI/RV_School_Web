@@ -14,9 +14,9 @@ PASSWORD_TEXT = '123456789'
 def test_go_to_recovery(browser):
     BasePage(browser).get_url(BASE_URL)
     LoginPage = LoginPageHelper(browser)
-    LoginPage.type_login(LOGINT_TEXT)
 
     for i in range(3):
+        LoginPage.type_login(LOGINT_TEXT)
         LoginPage.type_password(PASSWORD_TEXT)
         LoginPage.clik_login()
 
