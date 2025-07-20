@@ -1,5 +1,6 @@
 from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
+import allure
 
 
 class LoginPageLocators:
@@ -14,14 +15,14 @@ class LoginPageLocators:
     VK_BUTTON = (By.XPATH, '//*[@data-l="t,vkc"]')
     MAIL_BUTTON = (By.XPATH, '//*[@data-l="t,mailru"]')
     YANDEX_BUTTON = (By.XPATH, '//*[@data-l="t,yandex"]')
-    OTHER_BUTTON = (By.XPATH, '//*[@data-l="t,other"]')
+    APPLE_BUTTON = (By.XPATH, '//*[@data-l="t,apple"]')
     ERROR_TEXT = (By.XPATH, '//div[@class="input-e login_error"]')
 
 
 class LoginPageHelper(BasePage):
     def __init__(self, driver):
         self.driver = driver
-        # self.check_page()
+        self.check_page()
 
     def check_page(self):
         self.find_element(LoginPageLocators.TAB_ENTRANCE)
@@ -35,10 +36,14 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.VK_BUTTON)
         self.find_element(LoginPageLocators.MAIL_BUTTON)
         self.find_element(LoginPageLocators.YANDEX_BUTTON)
-        self.find_element(LoginPageLocators.OTHER_BUTTON)
+        self.find_element(LoginPageLocators.APPLE_BUTTON)
 
+    @allure.step('Нажимаем на кнопку Login')
     def clik_login(self):
+        self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
 
+    @allure.step('Получаем текст ошибки')
     def get_error_text(self):
+        self.attach_screenshot()
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
