@@ -1,7 +1,7 @@
 from core.BaseTest import browser
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from pages.LoginPage import LoginPageHelper
-from pages.RecoveryPage import RecoveryPageHelper
+from pages.RecoveryPage import RecoveryPageHelperHelper
 
 import allure
 
@@ -12,7 +12,7 @@ PASSWORD_TEXT = '123456789'
 @allure.suite('Проврка восстановления')
 @allure.title('Проверка перехода к восстановлению после нескеольких неудачных попыток входа')
 def test_go_to_recovery(browser):
-    BasePage(browser).get_url(BASE_URL)
+    BasePageHelper(browser).get_url(BASE_URL)
     LoginPage = LoginPageHelper(browser)
 
     for i in range(3):
@@ -21,4 +21,4 @@ def test_go_to_recovery(browser):
         LoginPage.clik_login()
 
     LoginPage.click_recovery()
-    RecoveryPageHelper(browser)
+    RecoveryPageHelperHelper(browser)
